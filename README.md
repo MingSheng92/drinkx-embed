@@ -1,9 +1,15 @@
 # drinkx-embed
 A simple, embeddable menu widget.
 
+TODO: 
+1. build api dedicated for embed menu function only 
+1. setup separate vm for the api that connects to the db (with api gateway for security)
+3. host the embed code on jsDelivr CDN.
+
 ## Usage
 
-To use the menu embed on your website, you need to include the CSS and JavaScript files in your HTML. It is recommended to host these files on a CDN like jsDelivr for the best performance.
+To enable the menu embed library, you need to include the CSS and JavaScript files in your HTML.
+
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/your-username/drinkx-embed@main/dist/drinkx-embed.min.css">
@@ -20,7 +26,7 @@ The easiest way to use the embed is to add the `data-menu-embed` attribute to a 
 <div data-menu-embed data-venue-id="YOUR_VENUE_ID"></div>
 ```
 
-### Method 2: Manual Initialization
+### Method 2: Manual Initialization (Future)
 
 If you need more control, you can initialize the script manually with JavaScript.
 
