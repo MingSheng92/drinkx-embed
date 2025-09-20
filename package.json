@@ -4,8 +4,8 @@
   "description": "A simple, embeddable menu widget.",
   "main": "dist/drinkx-embed.js",
   "scripts": {
-    "build": "esbuild src/drinkx-embed.js --bundle --minify --outfile=dist/drinkx-embed.min.js",
-    "build:dev": "esbuild src/drinkx-embed.js --bundle --outfile=dist/drinkx-embed.js"
+    "build": "esbuild src/drinkx-embed.js --bundle --minify --outfile=dist/drinkx-embed.min.js && esbuild src/drinkx-embed.css --bundle --minify --outfile=dist/drinkx-embed.min.css",
+    "build:dev": "esbuild src/drinkx-embed.js --bundle --outfile=dist/drinkx-embed.js && esbuild src/drinkx-embed.css --bundle --outfile=dist/drinkx-embed.css"
   },
   "repository": {
     "type": "git",
