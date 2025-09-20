@@ -1,0 +1,24 @@
+{
+  "name": "drinkx-embed",
+  "version": "1.0.0",
+  "description": "A simple, embeddable menu widget.",
+  "main": "dist/drinkx-embed.js",
+  "scripts": {
+    "build": "esbuild src/drinkx-embed.js --bundle --minify --outfile=dist/drinkx-embed.min.js",
+    "build:dev": "esbuild src/drinkx-embed.js --bundle --outfile=dist/drinkx-embed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MingSheng92/drinkx-embed.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MingSheng92/drinkx-embed/issues"
+  },
+  "homepage": "https://github.com/MingSheng92/drinkx-embed#readme",
+  "devDependencies": {
+    "esbuild": "^0.25.10"
+  }
+}

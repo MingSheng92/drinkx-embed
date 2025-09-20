@@ -22,6 +22,12 @@
         return el;
     }
 
+    function sanitizeHTML(str) {
+        const temp = document.createElement('div');
+        temp.textContent = str;
+        return temp.innerHTML;
+    }
+
     // Main Menu Embed Class
     class MenuEmbed {
         constructor(containerId, options = {}) {
@@ -339,13 +345,13 @@
             let html = `
                 <div class="menu-embed-container">
                     <div class="menu-embed-header">
-                        <p class="menu-embed-section-count">${sectionCount} Sections On The Menu</p>
+                        <p class="menu-embed-section-count">${sanitizeHTML(sectionCount)} Sections On The Menu</p>
                     </div>
             `;
             
             if (this.options.showSearch) {
                 html += `
-                    <input type="text" class="menu-embed-search" placeholder="Search menu..." value="${this.searchQuery}">
+                    <input type="text" class="menu-embed-search" placeholder="Search menu..." value="${sanitizeHTML(this.searchQuery)}">
                 `;
             }
             
@@ -372,7 +378,7 @@
             let html = `
                 <div class="menu-embed-section" data-section-index="${index}">
                     <div class="menu-embed-section-header" data-section-toggle="${index}">
-                        <h6 class="menu-embed-section-title">${section.sectionName}</h6>
+                        <h6 class="menu-embed-section-title">${sanitizeHTML(section.sectionName)}</h6>
                         <span class="menu-embed-chevron ${chevronClass}">▼</span>
                     </div>
                     <div class="menu-embed-section-content ${isExpanded ? '' : 'collapsed'}" data-section-content="${index}">
@@ -418,7 +424,7 @@
             let html = `
                 <div class="menu-embed-section" data-subsection-id="${subSection.id}">
                     <div class="menu-embed-section-header" data-subsection-toggle="${subSection.id}">
-                        <h6 class="menu-embed-section-title">${subSection.sectionName}</h6>
+                        <h6 class="menu-embed-section-title">${sanitizeHTML(subSection.sectionName)}</h6>
                         <span class="menu-embed-chevron ${chevronClass}">▼</span>
                     </div>
                     <div class="menu-embed-section-content ${isExpanded ? '' : 'collapsed'}">
@@ -441,17 +447,17 @@
         renderMenuItem(item) {
             const unavailableClass = item.itemAvailability === false ? 'grayscale(100%)' : 'none';
             const imageHtml = item.photo && item.photo.trim() !== '' 
-                ? `<img src="${item.photo}" alt="${item.name}" style="filter: ${unavailableClass};">`
+                ? `<img src="${sanitizeHTML(item.photo)}" alt="${sanitizeHTML(item.name)}" style="filter: ${unavailableClass};">`
                 : '<span style="font-size: 28px; color: #d4941e;">🍺</span>';
             
             const ratingHtml = this.options.showRatings ? (
                 item.averageRating == 0 
                     ? '<span class="menu-embed-star">☆</span>'
-                    : `<div class="menu-embed-rating"><b>${item.averageRating}</b><span class="menu-embed-star">★</span></div>`
+                    : `<div class="menu-embed-rating"><b>${sanitizeHTML(item.averageRating)}</b><span class="menu-embed-star">★</span></div>`
             ) : '';
             
             const priceHtml = this.options.showPrices 
-                ? `<p class="menu-embed-item-price">${item.itemPrice <= 0 ? '-' : `$ ${item.itemPrice} / ${item.servingTypeText || 'serving'}`}</p>`
+                ? `<p class="menu-embed-item-price">${item.itemPrice <= 0 ? '-' : `$ ${sanitizeHTML(item.itemPrice)} / ${sanitizeHTML(item.servingTypeText) || 'serving'}`}</p>`
                 : '';
             
             const unavailableText = item.itemAvailability === false 
@@ -465,11 +471,11 @@
                     </div>
                     <div class="menu-embed-item-content">
                         <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 4px;">
-                            <h5 class="menu-embed-item-title">${item.name}${item.variant ? ` [${item.variant} Vintage]` : ''}</h5>
+                            <h5 class="menu-embed-item-title">${sanitizeHTML(item.name)}${item.variant ? ` [${sanitizeHTML(item.variant)} Vintage]` : ''}</h5>
                             ${ratingHtml}
                         </div>
-                        <p class="menu-embed-item-meta">${item.bottler || 'Unknown Producer'} | ${item.drinkType || 'N/A type'} | ${item.abv ? item.abv + '%' : 'N/A ABV'}</p>
-                        <p class="menu-embed-item-description">${item.description || ''}</p>
+                        <p class="menu-embed-item-meta">${sanitizeHTML(item.bottler) || 'Unknown Producer'} | ${sanitizeHTML(item.drinkType) || 'N/A type'} | ${item.abv ? sanitizeHTML(item.abv) + '%' : 'N/A ABV'}</p>
+                        <p class="menu-embed-item-description">${sanitizeHTML(item.description) || ''}</p>
                         ${priceHtml}
                         ${unavailableText}
                     </div>
@@ -481,7 +487,7 @@
             return `
                 <div class="menu-embed-pagination" data-section-pagination="${sectionIndex}">
                     <button ${pagination.page <= 1 ? 'disabled' : ''} data-page="${pagination.page - 1}">Previous</button>
-                    <span>Page ${pagination.page} of ${pagination.total_pages}</span>
+                    <span>Page ${sanitizeHTML(pagination.page)} of ${sanitizeHTML(pagination.total_pages)}</span>
                     <button ${pagination.page >= pagination.total_pages ? 'disabled' : ''} data-page="${pagination.page + 1}">Next</button>
                 </div>
             `;

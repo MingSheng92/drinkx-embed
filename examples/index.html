@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drinkx Menu Embed Example</title>
+    <!-- The stylesheet for the menu embed -->
+    <link rel="stylesheet" href="../dist/drinkx-embed.min.css">
+</head>
+<body>
+
+    <h1>Drinkx Menu Embed Example</h1>
+
+    <p>This is an example of how to use the Drinkx Menu Embed script on your website.</p>
+
+    <hr style="margin: 40px 0;">
+
+    <h2>Method 1: Automatic Initialization</h2>
+    <p>You can have the script automatically initialize by adding the <code>data-menu-embed</code> attribute to a container element. You must also provide a <code>data-venue-id</code>.</p>
+    <p><strong>Note:</strong> Replace <code>YOUR_VENUE_ID</code> with your actual venue ID.</p>
+
+    <!-- The container where the menu will be embedded automatically -->
+    <div id="menu-container-auto" data-menu-embed data-venue-id="YOUR_VENUE_ID"></div>
+
+    <hr style="margin: 40px 0;">
+
+    <h2>Method 2: Manual Initialization</h2>
+    <p>You can also initialize the script manually using JavaScript. This gives you more control over the options.</p>
+    <p><strong>Note:</strong> Replace <code>YOUR_VENUE_ID</code> with your actual venue ID.</p>
+
+    <!-- The container where the menu will be embedded manually -->
+    <div id="menu-container-manual"></div>
+
+    <!-- Important: The script should be placed at the end of the body -->
+    <script src="../dist/drinkx-embed.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Replace 'YOUR_VENUE_ID' with the actual ID of your venue
+            const venueId = 'YOUR_VENUE_ID';
+
+            // Create a new menu embed instance
+            window.MenuEmbed.create('menu-container-manual', {
+                venueId: venueId,
+                // You can override other options here:
+                // theme: 'dark',
+                // showSearch: false,
+                // showRatings: false,
+                // showPrices: false
+            });
+        });
+    </script>
+
+</body>
+</html>
